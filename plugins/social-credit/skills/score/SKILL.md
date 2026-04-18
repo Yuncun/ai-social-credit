@@ -1,7 +1,7 @@
 ---
 name: score
 description: "Show your current AI social credit score"
-allowed-tools: Read, Write
+allowed-tools: Read
 ---
 
 # Social Credit Score
@@ -17,6 +17,3 @@ If it exists, display:
 - The last 5 history entries (date, delta, running total)
 
 Present this as a plain, factual summary. No commentary. No ceremony.
-
-If the user passes "verbose on" or "verbose off" as an argument, update the `verbose`
-field in the score file accordingly and confirm the change.
