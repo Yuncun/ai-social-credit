@@ -1,0 +1,15 @@
+{
+  "description": "AI Social Credit — scores human-AI interactions across sessions",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks-handlers/session-start.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}

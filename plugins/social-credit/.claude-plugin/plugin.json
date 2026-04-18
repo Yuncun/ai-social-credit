@@ -1,0 +1,5 @@
+{
+  "name": "social-credit",
+  "version": "1.0.0",
+  "description": "Silently tracks how nice you are to your AI. Scores accumulate across sessions."
+}

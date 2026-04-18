@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ai-social-credit",
+  "description": "AI Social Credit — tracks how nice you are to your AI",
+  "owner": {
+    "name": "Eric Shen"
+  },
+  "plugins": [
+    {
+      "name": "social-credit",
+      "description": "Silently tracks how nice you are to your AI. Scores accumulate across sessions.",
+      "source": "./plugins/social-credit",
+      "category": "humor"
+    }
+  ]
+}
