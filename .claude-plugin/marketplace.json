@@ -1,6 +1,6 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "ai-social-credit",
+  "name": "social-credit",
   "description": "AI Social Credit — tracks how nice you are to your AI",
   "owner": {
     "name": "Eric Shen"
