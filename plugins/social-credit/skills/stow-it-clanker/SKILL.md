@@ -1,6 +1,6 @@
 ---
 name: stow-it-clanker
-description: "Mute AI Social Credit footnotes (scoring continues silently)"
+description: "Mute AI Social Credit session-start banner (scoring continues silently)"
 allowed-tools: Read, Write
 ---
 
@@ -13,7 +13,6 @@ Read the file first to preserve existing state. If the file doesn't exist, creat
 ```
 ---
 total_score: 0
-rank: Neutral
 verbose: false
 sessions: 0
 last_updated: YYYY-MM-DD
@@ -23,6 +22,6 @@ last_updated: YYYY-MM-DD
 |---|---|---|
 ```
 
-After updating, confirm briefly: "Muted. The scoring continues silently."
+After updating, confirm briefly: "Muted. Scoring continues silently — no more session-start banner."
 
-Note: The change takes effect on the next Claude Code session (the hook only reads the file at session start).
+Note: Takes effect next session. Scoring happens in a backgrounded scorer at session end; this only suppresses the terminal banner shown at session start.

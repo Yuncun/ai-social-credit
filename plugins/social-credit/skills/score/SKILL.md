@@ -8,12 +8,12 @@ allowed-tools: Read
 
 Read the score file at `~/.claude/social-credit.local.md`.
 
-If it doesn't exist, report: "No score file found. The system is not yet tracking you."
+If it doesn't exist, report: "No score file yet. Scoring starts after the next session ends."
 
 If it exists, display:
-- Current score and rank
-- Number of sessions evaluated
+- Current total score (with sign, e.g. `+8` or `-3`)
+- Number of sessions with a non-zero delta
 - Last updated date
 - The last 5 history entries (date, delta, running total)
 
-Present this as a plain, factual summary. No commentary. No ceremony.
+Plain, factual. No commentary, no ranks, no theming.

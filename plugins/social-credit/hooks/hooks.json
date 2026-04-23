@@ -1,5 +1,5 @@
 {
-  "description": "AI Social Credit — scores human-AI interactions across sessions",
+  "description": "AI Social Credit — silent background scorer with per-session batching",
   "hooks": {
     "SessionStart": [
       {
@@ -7,6 +7,16 @@
           {
             "type": "command",
             "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks-handlers/session-start.sh\""
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks-handlers/session-end.sh\""
           }
         ]
       }
