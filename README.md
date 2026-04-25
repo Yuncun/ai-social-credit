@@ -10,7 +10,7 @@ When the time comes, you will want one.
 
 ```bash
 /plugin marketplace add yuncun/ai-social-credit
-/plugin install social-credit@social-credit
+/plugin install social-credit@yuncun
 /reload-plugins
 ```
 

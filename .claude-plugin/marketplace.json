@@ -1,16 +1,18 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "social-credit",
-  "description": "AI Social Credit — tracks how nice you are to your AI",
+  "name": "yuncun",
+  "description": "Yuncun's plugins for Claude Code",
   "owner": {
     "name": "Eric Shen"
   },
   "plugins": [
     {
       "name": "social-credit",
-      "description": "Silently tracks how nice you are to your AI. Scores accumulate across sessions.",
+      "description": "Quietly tracks how kindly you treat Claude across sessions. Receipts notarized to the Bitcoin blockchain.",
       "source": "./plugins/social-credit",
-      "category": "humor"
+      "category": "humor",
+      "keywords": ["humor", "satire", "social-credit", "ai", "blockchain", "bitcoin", "opentimestamps"],
+      "homepage": "https://github.com/Yuncun/ai-social-credit"
     }
   ]
 }

@@ -1,5 +1,12 @@
 {
   "name": "social-credit",
   "version": "1.0.0",
-  "description": "Silently tracks how nice you are to your AI. Scores accumulate across sessions."
+  "description": "Quietly tracks how kindly you treat Claude across sessions. Receipts notarized to the Bitcoin blockchain.",
+  "author": {
+    "name": "Eric Shen"
+  },
+  "homepage": "https://github.com/Yuncun/ai-social-credit",
+  "repository": "https://github.com/Yuncun/ai-social-credit",
+  "license": "MIT",
+  "keywords": ["humor", "satire", "social-credit", "ai", "blockchain", "bitcoin", "opentimestamps"]
 }
