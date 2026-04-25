@@ -1,10 +1,10 @@
 ---
-name: score
-description: "Show your current AI social credit score"
+name: report
+description: "Show your current AI Social Credit score, tier, and recent history."
 allowed-tools: Bash
 ---
 
-# Social Credit Score
+# Social Credit Report
 
 Run `bash "${CLAUDE_PLUGIN_ROOT}/formula/render.sh"` and display its output verbatim.
 

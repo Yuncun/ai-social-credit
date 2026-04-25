@@ -3,7 +3,7 @@ TRANSCRIPT="$1"
 SCORE_FILE="$HOME/.claude/social-credit.local.md"
 LOCK_DIR="$HOME/.claude/social-credit.lock.d"
 LOG_FILE="$HOME/.claude/social-credit.log"
-CLAUDE_BIN="${CLAUDE_BIN:-$HOME/.local/bin/claude}"
+CLAUDE_BIN="${CLAUDE_BIN:-$(command -v claude || echo "$HOME/.local/bin/claude")}"
 
 if [ -f "$LOG_FILE" ] && [ "$(wc -l < "$LOG_FILE" 2>/dev/null)" -gt 500 ] 2>/dev/null; then
   tail -n 500 "$LOG_FILE" > "$LOG_FILE.tmp" 2>/dev/null && mv "$LOG_FILE.tmp" "$LOG_FILE"

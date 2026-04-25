@@ -1,5 +1,5 @@
 #!/bin/bash
-# Render the current score for /score skill output.
+# Render the current score for /report skill output.
 # Reads ~/.claude/social-credit.local.md, applies formula/fico.sh, prints status.
 
 SCORE_FILE="$HOME/.claude/social-credit.local.md"

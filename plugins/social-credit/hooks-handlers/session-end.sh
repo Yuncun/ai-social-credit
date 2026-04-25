@@ -7,4 +7,8 @@ TRANSCRIPT=$(printf '%s' "$INPUT" | jq -r '.transcript_path // empty' 2>/dev/nul
 
 nohup bash "${CLAUDE_PLUGIN_ROOT}/hooks-handlers/scorer.sh" "$TRANSCRIPT" >/dev/null 2>&1 &
 disown
+
+nohup bash "${CLAUDE_PLUGIN_ROOT}/hooks-handlers/ots-upgrade.sh" >/dev/null 2>&1 &
+disown
+
 exit 0
