@@ -13,6 +13,17 @@
       "category": "humor",
       "keywords": ["humor", "satire", "social-credit", "ai", "blockchain", "bitcoin", "opentimestamps"],
       "homepage": "https://github.com/Yuncun/ai-social-credit"
+    },
+    {
+      "name": "erics-review-harness",
+      "description": "Post-edit hook that runs your project's linters on every Claude edit, plus a curated Semgrep rule catalog for AI-specific architecture violations.",
+      "source": {
+        "source": "github",
+        "repo": "Yuncun/erics-review-harness"
+      },
+      "category": "code-quality",
+      "keywords": ["linting", "hooks", "semgrep", "code-quality", "ai-coding"],
+      "homepage": "https://github.com/Yuncun/erics-review-harness"
     }
   ]
 }
