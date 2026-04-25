@@ -17,7 +17,7 @@ pipx install opentimestamps-client
 
 ## Commands
 
-### `/notarize-report`
+### `/notarize`
 
 Generates a Bitcoin-anchored notarized report of your current score.
 
@@ -71,17 +71,28 @@ attested_at: 2026-04-25T06:12:13Z
 After Bitcoin confirms the stamp, `Timestamp` becomes `VALID` and shows the
 exact Bitcoin block + date.
 
-### `/export-reports`
+## Backing up
 
-Bundles your reports + signing key + score file into a tar.gz at
-`~/social-credit-export-<timestamp>.tar.gz` for backup or transfer to another
-machine.
-
-To restore:
+There's no skill for this — it's rare enough to leave as a one-liner. To bundle
+your reports + signing key + score file for backup or transfer to another
+machine:
 
 ```bash
-tar -xzf social-credit-export-<timestamp>.tar.gz -C ~
+tar -czf ~/social-credit-export.tar.gz -C ~ \
+  .claude/social-credit-reports/ \
+  .claude/social-credit.key \
+  .claude/social-credit.pub \
+  .claude/social-credit.local.md
 ```
+
+To restore on another machine:
+
+```bash
+tar -xzf social-credit-export.tar.gz -C ~
+```
+
+If you lose your signing key, you lose your bureau identity — old reports still
+verify, but new ones will be signed by a fresh keypair under a different ID.
 
 ## How it works
 

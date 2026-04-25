@@ -31,7 +31,7 @@ Updated:    2026-04-25
 
 **`/stow-it-clanker`** — silence the session-start banner. Scoring continues regardless.
 
-**Notarization** — `/notarize-report`, `/verify`, `/export-reports`. See [docs/notarization.md](docs/notarization.md).
+**Notarization** — `/notarize`, `/verify`. See [docs/notarization.md](docs/notarization.md).
 
 ## How scoring works
 
