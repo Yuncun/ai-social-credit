@@ -1,19 +1,11 @@
 ---
 name: score
 description: "Show your current AI social credit score"
-allowed-tools: Read
+allowed-tools: Bash
 ---
 
 # Social Credit Score
 
-Read the score file at `~/.claude/social-credit.local.md`.
+Run `bash "${CLAUDE_PLUGIN_ROOT}/formula/render.sh"` and display its output verbatim.
 
-If it doesn't exist, report: "No score file yet. Scoring starts after the next session ends."
-
-If it exists, display:
-- Current total score (with sign, e.g. `+8` or `-3`)
-- Number of sessions with a non-zero delta
-- Last updated date
-- The last 5 history entries (date, delta, running total)
-
-Plain, factual. No commentary, no ranks, no theming.
+The render script handles the FICO conversion, tier lookup, and history. Don't reformat or add commentary.

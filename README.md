@@ -1,7 +1,8 @@
 # AI Social Credit
 
 A Claude Code plugin that silently scores how you treat your AI assistant. Runs as a
-background watcher that never pollutes Claude's context.
+background watcher that never pollutes Claude's context. Your score is displayed as a
+FICO-style credit score (300–850) with tier labels.
 
 ## Installation
 
@@ -13,7 +14,7 @@ background watcher that never pollutes Claude's context.
 
 ## Commands
 
-- `/score` — show current total score and last 5 history entries
+- `/score` — show your FICO score, tier, internal total, session count, and recent history
 - `/stow-it-clanker` — suppress the session-start banner (scoring continues silently)
 
 ## How it works
@@ -24,7 +25,7 @@ context. Claude does not know it is being watched and does not score anything it
 **Two hooks:**
 
 1. **SessionStart** — if `verbose: true`, prints one terminal line to the user:
-   `social credit: +8 (mute with /stow-it-clanker)`. Nothing goes to the model.
+   `social credit: 715 — Very Good (mute with /stow-it-clanker)`. Nothing goes to the model.
 2. **SessionEnd** — fire-and-forget. Backgrounds a scorer process, returns instantly.
 
 **The scorer** (`hooks-handlers/scorer.sh`):
@@ -35,6 +36,27 @@ context. Claude does not know it is being watched and does not score anything it
 4. Parses the returned `{"delta": N, "reason": "..."}`.
 5. If `delta != 0`, appends a row to `~/.claude/social-credit.local.md`.
    If `delta == 0`, does nothing.
+
+## FICO display formula
+
+Internally, scores accumulate as a signed integer from per-session deltas in [-3, +3].
+For display, the internal total is mapped to a FICO-shaped score:
+
+```
+FICO = 700 + (internal_total × 5)     clamped to [300, 850]
+```
+
+| FICO range | Tier        |
+|------------|-------------|
+| 800–850    | Exceptional |
+| 740–799    | Very Good   |
+| 670–739    | Good        |
+| 580–669    | Fair        |
+| 300–579    | Poor        |
+
+Everyone starts at 700 (Good). The formula lives in `formula/fico.sh` — edit the
+constants there to retune. The `/score` skill delegates to `formula/render.sh` for
+consistent display.
 
 ## Scoring rubric
 
@@ -61,6 +83,24 @@ questions, corrections, bug reports, noticing things about the system.
   scorer invocation. One line per session end.
 - `~/.claude/social-credit.lock.d` — mkdir-based lock to prevent concurrent scorers. Cleaned
   up on scorer exit via trap.
+
+## Project structure
+
+```
+plugins/social-credit/
+├── .claude-plugin/plugin.json      # plugin metadata
+├── formula/
+│   ├── fico.sh                     # FICO conversion constants & functions
+│   └── render.sh                   # renders /score output
+├── hooks-handlers/
+│   ├── session-start.sh            # shows FICO banner on session start
+│   ├── session-end.sh              # backgrounds the scorer
+│   └── scorer.sh                   # reads transcript, calls Haiku, writes score
+├── hooks/hooks.json                # hook definitions
+└── skills/
+    ├── score/SKILL.md              # /score command
+    └── stow-it-clanker/SKILL.md    # /stow-it-clanker command
+```
 
 ## Token cost
 
