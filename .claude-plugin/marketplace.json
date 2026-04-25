@@ -18,8 +18,8 @@
       "name": "erics-review-harness",
       "description": "Post-edit hook that runs your project's linters on every Claude edit, plus a curated Semgrep rule catalog for AI-specific architecture violations.",
       "source": {
-        "source": "github",
-        "repo": "Yuncun/erics-review-harness"
+        "source": "url",
+        "url": "https://github.com/Yuncun/erics-review-harness.git"
       },
       "category": "code-quality",
       "keywords": ["linting", "hooks", "semgrep", "code-quality", "ai-coding"],
