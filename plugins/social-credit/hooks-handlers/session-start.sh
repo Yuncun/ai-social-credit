@@ -13,4 +13,4 @@ TOTAL=$(grep '^total_score:' "$SCORE_FILE" | head -1 | sed 's/total_score: *//;s
 FICO=$(internal_to_fico "$TOTAL")
 TIER=$(fico_to_tier "$FICO")
 
-printf '{"systemMessage":"social credit: %s — %s (mute with /stow-it-clanker)"}\n' "$FICO" "$TIER"
+printf '{"systemMessage":"social credit: %s — %s\\n(mute with /stow-it-clanker)"}\n' "$FICO" "$TIER"
