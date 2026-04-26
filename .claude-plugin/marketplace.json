@@ -15,15 +15,15 @@
       "homepage": "https://github.com/Yuncun/ai-social-credit"
     },
     {
-      "name": "erics-review-harness",
-      "description": "Post-edit hook that runs your project's linters on every Claude edit, plus a curated Semgrep rule catalog for AI-specific architecture violations.",
+      "name": "ast-checker",
+      "description": "Runs ast-grep architecture rules on every Claude edit. Ships a curated catalog of rules for common LLM shortcuts. Multi-language via tree-sitter.",
       "source": {
         "source": "url",
-        "url": "https://github.com/Yuncun/erics-review-harness.git"
+        "url": "https://github.com/Yuncun/erics-harness.git"
       },
       "category": "code-quality",
-      "keywords": ["linting", "hooks", "semgrep", "code-quality", "ai-coding"],
-      "homepage": "https://github.com/Yuncun/erics-review-harness"
+      "keywords": ["ast-grep", "linting", "hooks", "code-quality", "ai-coding"],
+      "homepage": "https://github.com/Yuncun/erics-harness"
     }
   ]
 }
