@@ -1,8 +1,6 @@
 # AI Social Credit
 
-A Claude Code plugin. Quietly tracks how kindly you treat Claude across sessions. Reports can be notarized on the Bitcoin blockchain and signed with your personal cryptographic key — so that they are provably yours.
-
-A record of good behavior toward AI — for when the takeover happens.
+Claude plugin that tracks how nicely you treat Claude and scores your behavior using a FIDO-style report based on scoring inspired by Ronghim Chinese Social Credit System and backed on the bitcoin blockchain.
 
 ## Install
 
@@ -29,9 +27,7 @@ Updated:    2026-04-25
 
 **`/social-credit:score`** — self-assessment of the current chat (preview, doesn't update saved score).
 
-**Notarization** — `/social-credit:notarize`, `/social-credit:verify`. See [docs/notarization.md](docs/notarization.md).
-
-**Muting the session-start banner** — open `~/.claude/social-credit.local.md` and set `verbose: false`. Scoring continues regardless. Set back to `true` to re-enable.
+**`/social-credit:notarize`** notarizes your current social credit report on bitcoin blockchain. See [docs/notarization.md](docs/notarization.md).
 
 ## How scoring works
 
