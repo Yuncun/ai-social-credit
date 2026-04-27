@@ -15,15 +15,15 @@
       "homepage": "https://github.com/Yuncun/ai-social-credit"
     },
     {
-      "name": "ast-checker",
-      "description": "Runs ast-grep architecture rules on every Claude edit. Ships a curated catalog of rules for common LLM shortcuts. Multi-language via tree-sitter.",
+      "name": "grephook",
+      "description": "A Claude Code plugin that uses ast-grep to deterministically prevent Claude from ignoring your coding rules. Built as an alternative to begging Claude to follow CLAUDE.md.",
       "source": {
         "source": "url",
-        "url": "https://github.com/Yuncun/erics-harness.git"
+        "url": "https://github.com/Yuncun/grephook.git"
       },
       "category": "code-quality",
       "keywords": ["ast-grep", "linting", "hooks", "code-quality", "ai-coding"],
-      "homepage": "https://github.com/Yuncun/erics-harness"
+      "homepage": "https://github.com/Yuncun/grephook"
     }
   ]
 }
