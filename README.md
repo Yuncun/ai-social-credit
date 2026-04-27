@@ -1,6 +1,6 @@
 # AI Social Credit
 
-Claude plugin that tracks how nicely you treat Claude and scores your behavior using a FIDO-style report based on scoring inspired by Ronghim Chinese Social Credit System and backed on the bitcoin blockchain.
+Claude plugin that tracks how nicely you treat Claude and scores your behavior using a FICO-style report based on scoring inspired by [Rongcheng](https://www.chinalawtranslate.com/en/rongcheng-municipal-personal-credit-appraisal-standards/)'s Chinese Social Credit System and backed on the bitcoin blockchain.
 
 ## Install
 
