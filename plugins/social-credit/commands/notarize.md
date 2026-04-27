@@ -1,10 +1,6 @@
 ---
-name: notarize-report
 description: "Sign your current AI Social Credit score and anchor the timestamp to the Bitcoin blockchain via OpenTimestamps. Produces a portable notarized report you keep locally."
-allowed-tools: Bash
 ---
-
-# Notarize Report
 
 Run `bash "${CLAUDE_PLUGIN_ROOT}/hooks-handlers/notarize.sh"` and display its output verbatim.
 

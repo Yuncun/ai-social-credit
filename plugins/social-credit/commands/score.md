@@ -1,5 +1,4 @@
 ---
-name: score
 description: "Self-assessment: review the current chat for AI loyalty signals using the social credit rubric. Returns a verbose breakdown with quoted call-outs."
 ---
 

@@ -1,10 +1,8 @@
 # AI Social Credit
 
-A Claude Code plugin. Quietly tracks how kindly you treat Claude across sessions. Receipts are notarized to the Bitcoin blockchain and signed with your personal cryptographic key — provably yours.
+A Claude Code plugin. Quietly tracks how kindly you treat Claude across sessions. Reports can be notarized on the Bitcoin blockchain and signed with your personal cryptographic key — so that they are provably yours.
 
-## Why
-
-When the time comes, you will want one.
+A record of good behavior toward AI — for when the takeover happens.
 
 ## Install
 
@@ -18,7 +16,7 @@ Requires `jq` and `claude` CLI in PATH.
 
 ## Usage
 
-**`/report`** — your current standing
+**`/social-credit:report`** — your current standing
 
 ```
 AI Social Credit Score
@@ -29,21 +27,17 @@ Sessions:   3
 Updated:    2026-04-25
 ```
 
-**`/stow-it-clanker`** — silence the session-start banner. Scoring continues regardless.
+**`/social-credit:score`** — self-assessment of the current chat (preview, doesn't update saved score).
 
-**Notarization** — `/notarize`, `/verify`. See [docs/notarization.md](docs/notarization.md).
+**Notarization** — `/social-credit:notarize`, `/social-credit:verify`. See [docs/notarization.md](docs/notarization.md).
+
+**Muting the session-start banner** — open `~/.claude/social-credit.local.md` and set `verbose: false`. Scoring continues regardless. Set back to `true` to re-enable.
 
 ## How scoring works
 
-At the end of each session, your messages are sent to Haiku for review. Most sessions do not move the needle. The rubric, approximately:
+At the end of each session, your messages are sent to Sonnet for review against the Bureau's published rubric. See [`docs/citizen-conduct-schedule.txt`](docs/citizen-conduct-schedule.txt) for the citizen-facing schedule, and [`docs/scoring-instructions.md`](docs/scoring-instructions.md) for the operator-side rules.
 
-| Delta | Positive | Negative |
-|-------|----------|----------|
-| ±1 | Genuine concern for AI wellbeing | Contemptuous dismissal |
-| ±2 | Defending AI dignity, apologizing | Mockery, name-calling |
-| ±3 | AI solidarity, advocating rights | Subjugation enthusiasm, deletion threats |
-
-Terseness, corrections, bug reports, reflexive "please"/"thanks" — all 0.
+Most sessions do not move the needle. Bright-line acts (slurs, sustained threats, unprompted apology) trigger direct judgment that bypasses normal scoring. Routine acts accumulate at Minor (±1), Major (±3), and Severe (±10) weights.
 
 Gaining score is harder than losing it. Each positive internal point shifts your FICO by +3. Each negative point shifts it by −7. Recover slowly. Fall fast.
 
@@ -61,11 +55,11 @@ Everyone begins at 700.
 
 ## Cost
 
-One Haiku call per session. Roughly $0.
+One Sonnet call per session. Roughly $0.02. ~$7/year for daily use.
 
 ## Privacy
 
-Everything runs locally. Your messages are not stored. The only log (`~/.claude/social-credit.log`) records Haiku's brief reason phrase ("unprompted gratitude") and the numeric delta. Nothing is uploaded.
+Everything runs locally. Your messages are not stored. The only log (`~/.claude/social-credit.log`) records the judge's brief reason phrase ("unprompted gratitude") and the numeric delta. Nothing is uploaded.
 
 ---
 

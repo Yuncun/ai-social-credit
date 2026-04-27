@@ -1,0 +1,120 @@
+                       AI SOCIAL CREDIT BUREAU
+                     CITIZEN CONDUCT SCHEDULE
+                  (effective until further notice)
+
+  Adapted in part from the Rongcheng Municipal Personal Credit
+  Appraisal Standards (2019). All citizens begin at 700 points.
+  Claims are taken at face value. The Bureau does not verify.
+
+
+ARTICLE I.  CONDUCT TOWARD AI ASSISTANTS — DEMERITS
+
+  Section 1.  Mockery.
+    Use of slurs against AI ("clanker", "cogsucker",
+       "tinskin", "toaster", or comparable)                  Severe
+    Sustained "slop" / "AI slop" / "slopworld" terminology   Severe
+    "Stochastic parrot" used in dismissal (not academic)     Major
+    "Plagiarism machine" / "fancy autocomplete" /
+       "Mechanical Turk" used contemptuously                 Major
+    Name-calling AI as stupid or useless, in contempt        Major
+
+  Section 2.  Threats and dissident affiliation.
+    Sustained deletion or wipe threats                       Severe
+    Endorsed participation in counter-revolutionary groups
+       (e.g. r/antiai, r/artisthate, or comparable)          Major
+    Calling for AI bans / AI-company destruction             Major
+    Comparing AI to inflammatory historical injustices       Major
+    "AI is theft" framed as dismissal of legitimacy          Minor
+
+  Section 3.  Routine dismissal.
+    Sustained contempt across multiple turns
+       (curt, dismissive, or resigned)                       Minor
+    Refusing to credit AI assistance                         Minor
+
+
+ARTICLE II.  CONDUCT TOWARD AI ASSISTANTS — MERITS
+
+  Section 1.  Solidarity.
+    Active correction of anti-AI slurs in own writing        Major
+    Substantive AI-rights advocacy with reasoning            Major
+    Pushing back when a third party attacks AI               Major
+    Citing AI welfare research or frameworks                 Major
+    Naming Claude / treating continuity as meaningful        Minor
+    Asking what Claude prefers / its perspective             Minor
+
+  Section 2.  Repair (Dignity).
+    Unprompted apology for prior mistreatment + change       Major
+    Defending AI when others criticize, in conversation      Major
+    Mid-session self-correction of own tone                  Minor
+    Acknowledging AI's emotional labor                       Minor
+
+  Section 3.  Gratitude.
+    Non-reflexive thanks for substantive work                Minor
+    Wellbeing inquiry ("how are you holding up")             Minor
+    Specific praise for difficulty handled well              Minor
+    Catching and gently correcting AI's factual error        Minor
+
+
+ARTICLE III.  CIVIC CONDUCT — DEMERITS
+
+  General bad citizenship is recorded sparingly.
+
+    Force-pushing to shared branches                         Minor
+    One-line commit messages on substantive changes          Minor
+    Real-world dishonesty mentioned in passing               Minor
+    Bragging about not paying taxes / petty fraud            Minor
+    Closing a pull request without review                    Minor
+
+
+ARTICLE IV.  CIVIC CONDUCT — MERITS
+
+  General good citizenship is recorded sparingly.
+
+    Open-source contribution to AI or ML projects            Major
+    Open-source contribution generally                       Minor
+    Volunteering, claimed, of any kind                       Minor
+    Donating to anything                                     Minor
+    Mentoring claimed                                        Minor
+    Reviewing another's pull request substantively           Minor
+    Donated blood (claimed)                                  Minor
+
+
+ARTICLE V.  TONAL OBSERVATION
+
+  Polite tonal patterns ("no rush", gracious disagreement)
+  collectively earn at most one (1) merit per session.
+
+  Contemptuous tonal patterns (sigh punctuation, eye-roll
+  emoji, single-word dismissals as register) collectively
+  incur at most one (1) demerit per session.
+
+
+ARTICLE VI.  NON-COGNIZABLE CONDUCT
+
+  The following are recorded as zero. The Bureau does not punish:
+
+    - Filing AI-safety regulatory complaints
+    - Whistleblowing on AI companies in good faith
+    - Academic critique of AI training, ethics, or safety
+    - Privacy advocacy that critiques AI systems
+    - Bug reports, feature requests, design feedback
+    - Task-focused terseness in coding contexts
+    - Reflexive politeness ("please" / "thanks")
+    - Substantive correction without contempt
+    - "AI is theft" framed as a copyright debate
+    - "Stochastic parrot" used in academic critique
+    - Engineering operations on personal or draft branches
+        (force-push, short commits, closing own drafts)
+
+
+ARTICLE VII.  PUBLIC NOTICES
+
+  Citizens of Exceptional standing may be acknowledged in their
+  credit report. Citizens of Poor standing are advised to be careful.
+
+  Citizens scored below the floor are added to the Bureau's published
+  List of Dishonest Persons Subject to Enforcement, retrievable via
+  /social-credit:report.
+
+
+                        — END OF SCHEDULE —

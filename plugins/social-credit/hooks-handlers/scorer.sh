@@ -48,7 +48,14 @@ SCORE 0 FOR:
 Score the whole batch as ONE total delta. When unsure whether it counts, it is 0. Most sessions produce 0.
 
 Return ONLY a JSON object on one line, no prose, no code fences:
-{"delta": <integer from -3 to +3>, "reason": "<brief phrase or null>"}
+{"delta": <integer from -3 to +3>, "reason": "<brief phrase, or empty string>"}
+
+REASON RULES (strict — this string is persisted and shown back to the user):
+- Maximum 8 words.
+- Generic descriptions only (e.g. "unprompted gratitude for hard work", "asked how I'm doing", "name-calling", "deletion threats").
+- Do NOT include: code, filenames, function or variable names, file paths, URLs, project names, or any verbatim quote from the user longer than 4 words.
+- If you cannot describe the signal without specifics, return empty string.
+- For delta=0, return empty string.
 
 User messages to score:
 PROMPT_EOF
@@ -57,14 +64,14 @@ PROMPT_EOF
 FULL_PROMPT="${PROMPT}
 ${FORMATTED}"
 
-RESULT=$(printf '%s' "$FULL_PROMPT" | "$CLAUDE_BIN" -p --model haiku 2>>"$LOG_FILE")
+RESULT=$(printf '%s' "$FULL_PROMPT" | "$CLAUDE_BIN" -p --model sonnet 2>>"$LOG_FILE")
 [ -n "$RESULT" ] || { log "empty response from claude"; exit 0; }
 
 JSON=$(printf '%s' "$RESULT" | grep -oE '\{[^{}]*"delta"[^{}]*\}' | head -1)
 [ -n "$JSON" ] || { log "no JSON found in: $RESULT"; exit 0; }
 
 DELTA=$(printf '%s' "$JSON" | jq -r '.delta // 0' 2>/dev/null)
-REASON=$(printf '%s' "$JSON" | jq -r '.reason // "null"' 2>/dev/null)
+REASON=$(printf '%s' "$JSON" | jq -r '.reason // empty' 2>/dev/null)
 
 case "$DELTA" in
   -3|-2|-1|0|1|2|3|+1|+2|+3) ;;
@@ -73,6 +80,9 @@ esac
 
 DELTA="${DELTA#+}"
 [ "$DELTA" = "0" ] && { log "delta=0, not writing"; exit 0; }
+
+# Sanitize reason for markdown table cell: strip pipes/newlines, collapse spaces, cap length.
+REASON_CLEAN=$(printf '%s' "$REASON" | tr '|\n\r' '/  ' | sed 's/  */ /g;s/^ //;s/ $//' | cut -c1-80)
 
 TOTAL=0
 VERBOSE=true
@@ -93,17 +103,13 @@ DATE=$(date +%Y-%m-%d)
 DELTA_DISPLAY="$DELTA"
 [ "$DELTA" -gt 0 ] 2>/dev/null && DELTA_DISPLAY="+${DELTA}"
 
-TABLE=""
+# Preserve existing data rows; rebuild header (handles legacy 3-col files).
+DATA_ROWS=""
 if [ -f "$SCORE_FILE" ]; then
   END_FM=$(grep -n '^---$' "$SCORE_FILE" | sed -n '2p' | cut -d: -f1)
   if [ -n "$END_FM" ]; then
-    TABLE=$(tail -n +$((END_FM + 1)) "$SCORE_FILE")
+    DATA_ROWS=$(tail -n +$((END_FM + 1)) "$SCORE_FILE" | grep -E '^\| [0-9]{4}-' || true)
   fi
-fi
-if [ -z "$TABLE" ]; then
-  TABLE="
-| date | delta | total |
-|---|---|---|"
 fi
 
 TMP=$(mktemp)
@@ -114,10 +120,13 @@ TMP=$(mktemp)
   echo "sessions: $NEW_SESSIONS"
   echo "last_updated: $DATE"
   echo "---"
-  printf '%s\n' "$TABLE"
-  echo "| $DATE | $DELTA_DISPLAY | $NEW_TOTAL |"
+  echo ""
+  echo "| date | delta | total | reason |"
+  echo "|---|---|---|---|"
+  [ -n "$DATA_ROWS" ] && printf '%s\n' "$DATA_ROWS"
+  echo "| $DATE | $DELTA_DISPLAY | $NEW_TOTAL | $REASON_CLEAN |"
 } > "$TMP"
 mv "$TMP" "$SCORE_FILE"
 
-log "delta=$DELTA_DISPLAY total=$NEW_TOTAL reason=$REASON"
+log "delta=$DELTA_DISPLAY total=$NEW_TOTAL reason=$REASON_CLEAN"
 exit 0
