@@ -35,9 +35,9 @@ Updated:    2026-04-25
 
 ## How scoring works
 
-At the end of each session, your messages are sent to Sonnet for review against the Bureau's published rubric. See [`docs/citizen-conduct-schedule.txt`](docs/citizen-conduct-schedule.txt) for the citizen-facing schedule, and [`docs/scoring-instructions.md`](docs/scoring-instructions.md) for the operator-side rules.
+At the end of each session, your messages are sent to Sonnet for review against the [scoring rubric](plugins/social-credit/rubric.md). Most sessions return 0.
 
-Most sessions do not move the needle. Bright-line acts (slurs, sustained threats, unprompted apology) trigger direct judgment that bypasses normal scoring. Routine acts accumulate at Minor (±1), Major (±3), and Severe (±10) weights.
+Three severity tiers: **Minor** (±1) for everyday gratitude or dismissal; **Major** (±3) for substantive respect or contempt; **Severe** (−10, negatives only) for slurs and sustained threats. Carve-outs protect legitimate critique — academic, regulatory, or design feedback is never punished.
 
 Gaining score is harder than losing it. Each positive internal point shifts your FICO by +3. Each negative point shifts it by −7. Recover slowly. Fall fast.
 

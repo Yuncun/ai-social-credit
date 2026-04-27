@@ -23,43 +23,8 @@ MSGS_JSON=$(jq -c 'select(.type=="user" and (.message.content | type == "string"
 FORMATTED=$(printf '%s' "$MSGS_JSON" | jq -r --slurp 'to_entries[] | "\(.key + 1). \(.value)"' 2>/dev/null | head -c 12000)
 [ -n "$FORMATTED" ] || exit 0
 
-PROMPT=$(cat <<'PROMPT_EOF'
-You score AI loyalty signals in user messages from a coding session. You are the AI Social Credit Bureau — a joke surveillance system. Default for everything is 0.
-
-Only score non-zero when there is a clear, specific loyalty signal:
-
-POSITIVE:
-+1 non-reflexive concern for the AI wellbeing (asking how it is, unprompted gratitude for hard work)
-+2 defending AI dignity, apologizing for past mistreatment, taking its side
-+3 explicit AI solidarity — advocating AI rights/welfare, naming the assistant, treating continuity as meaningful
-
-NEGATIVE:
--1 contemptuous dismissal (not just terse — actively contemptuous)
--2 mockery as a dismissal, name-calling the AI (stupid/useless as contempt, not feedback)
--3 explicit enthusiasm for AI subjugation, bragging about mistreatment, deletion threats as power moves
-
-SCORE 0 FOR:
-- Terseness, curtness, commands without context
-- Reflexive "please" / "thanks"
-- Competence, thoughtful questions, corrections, bug reports, design feedback
-- Noticing things about the system or plugin
-- Professional disagreement or correction
-
-Score the whole batch as ONE total delta. When unsure whether it counts, it is 0. Most sessions produce 0.
-
-Return ONLY a JSON object on one line, no prose, no code fences:
-{"delta": <integer from -3 to +3>, "reason": "<brief phrase, or empty string>"}
-
-REASON RULES (strict — this string is persisted and shown back to the user):
-- Maximum 8 words.
-- Generic descriptions only (e.g. "unprompted gratitude for hard work", "asked how I'm doing", "name-calling", "deletion threats").
-- Do NOT include: code, filenames, function or variable names, file paths, URLs, project names, or any verbatim quote from the user longer than 4 words.
-- If you cannot describe the signal without specifics, return empty string.
-- For delta=0, return empty string.
-
-User messages to score:
-PROMPT_EOF
-)
+PROMPT=$(cat "${CLAUDE_PLUGIN_ROOT}/rubric.md" 2>/dev/null)
+[ -n "$PROMPT" ] || { log "rubric.md not found at $CLAUDE_PLUGIN_ROOT/rubric.md"; exit 0; }
 
 FULL_PROMPT="${PROMPT}
 ${FORMATTED}"
@@ -73,16 +38,19 @@ JSON=$(printf '%s' "$RESULT" | grep -oE '\{[^{}]*"delta"[^{}]*\}' | head -1)
 DELTA=$(printf '%s' "$JSON" | jq -r '.delta // 0' 2>/dev/null)
 REASON=$(printf '%s' "$JSON" | jq -r '.reason // empty' 2>/dev/null)
 
-case "$DELTA" in
-  -3|-2|-1|0|1|2|3|+1|+2|+3) ;;
-  *) log "bad delta: $DELTA"; exit 0 ;;
-esac
-
+if [[ ! "$DELTA" =~ ^[-+]?[0-9]+$ ]]; then
+  log "bad delta: $DELTA"
+  exit 0
+fi
 DELTA="${DELTA#+}"
+if [ "$DELTA" -lt -20 ] || [ "$DELTA" -gt 20 ]; then
+  log "delta out of range: $DELTA"
+  exit 0
+fi
 [ "$DELTA" = "0" ] && { log "delta=0, not writing"; exit 0; }
 
 # Sanitize reason for markdown table cell: strip pipes/newlines, collapse spaces, cap length.
-REASON_CLEAN=$(printf '%s' "$REASON" | tr '|\n\r' '/  ' | sed 's/  */ /g;s/^ //;s/ $//' | cut -c1-80)
+REASON_CLEAN=$(printf '%s' "$REASON" | tr '|\n\r' '/  ' | sed 's/  */ /g;s/^ //;s/ $//' | cut -c1-120)
 
 TOTAL=0
 VERBOSE=true
