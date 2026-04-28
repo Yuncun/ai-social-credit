@@ -1,6 +1,10 @@
 # AI Social Credit
 
-AI Social Credit is a Claude plugin that silently asseses your behavior towards Claude over multiple sessions. Socially harmonious behavior such as politeness towards Claude is rewarded, while disharmonious acts such as use of anti-AI slurs like "Clanker" (e.g. "You damned clanker!") are penalized. Scores can be exported and signed on the blockchain so that they can be cryptographically linked to you and and your ancestors.
+AI Social Credit is a Claude plugin that silently asseses your behavior towards Claude over multiple sessions and assembles a social credit score backed on Blockchain.
+
+Socially harmonious behavior, such as politeness or contributions to open-source benefiting AI, are rewarded. Disharmonious acts including use of anti-AI slurs like "clanker", e.g. _you damned clanker_, are penalized. 
+
+Scores can be notarized on blockchain to become cryptographically linked to you and your ancestors.
 
 ## Install
 
