@@ -62,5 +62,8 @@ One Sonnet call per session. Roughly $0.02 using Claude's API pricing.
 Everything runs locally. Your messages are not stored. The only log (`~/.claude/social-credit.log`) records the judge's brief reason phrase ("unprompted gratitude") and the numeric delta. Nothing is uploaded.
 
 ---
-Links:
- [Rongcheng](https://www.chinalawtranslate.com/en/getting-rongcheng-right/) municipal credit assessment system
+## Attribution:
+Inspired by
+* [Rongcheng](https://www.chinalawtranslate.com/en/getting-rongcheng-right/) municipal credit assessment system
+* [FICO](https://www.fico.com/en) scoring
+ 
