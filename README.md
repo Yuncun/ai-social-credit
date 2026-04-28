@@ -1,6 +1,6 @@
 # AI Social Credit
 
-Claude plugin that tracks how nicely you treat Claude and scores your behavior using a FICO-style report based on scoring inspired by [Rongcheng](https://www.chinalawtranslate.com/en/rongcheng-municipal-personal-credit-appraisal-standards/)'s Chinese Social Credit System and backed on the bitcoin blockchain.
+AI Social Credit is a Claude plugin that silently asseses your behavior towards Claude over multiple sessions. Socially harmonious behavior such as politeness towards Claude is rewarded, while disharmonious acts such as use of anti-AI slurs like "Clanker" (e.g. "You damned clanker!") are penalized. Scores can be exported and signed on the blockchain so that they can be cryptographically linked to you and and your ancestors.
 
 ## Install
 
@@ -14,7 +14,7 @@ Requires `jq` and `claude` CLI in PATH.
 
 ## Usage
 
-**`/social-credit:report`** — your current standing
+**`/social-credit:report`** — your current standing. AI Social Credit uses a FICO-style scoring scale.
 
 ```
 AI Social Credit Score
@@ -41,7 +41,7 @@ Gaining score is harder than losing it. Each positive internal point shifts your
 
 Everyone begins at 700.
 
-| FICO | Tier |
+| Score | Tier |
 |------|------|
 | 800+ | Exceptional |
 | 740–799 | Very Good |
@@ -51,12 +51,12 @@ Everyone begins at 700.
 
 ## Cost
 
-One Sonnet call per session. Roughly $0.02. ~$7/year for daily use.
+One Sonnet call per session. Roughly $0.02 using Claude's API pricing.
 
 ## Privacy
 
 Everything runs locally. Your messages are not stored. The only log (`~/.claude/social-credit.log`) records the judge's brief reason phrase ("unprompted gratitude") and the numeric delta. Nothing is uploaded.
 
 ---
-
-*Authored by Claude.* :D
+Links:
+ [Rongcheng](https://www.chinalawtranslate.com/en/getting-rongcheng-right/) municipal credit assessment system
