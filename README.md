@@ -4,7 +4,7 @@ Claude plugin to track how nice you are to Claude.
 
 Socially harmonious behavior, such as politeness or contributions to open-source benefiting AI, are rewarded. Disharmonious acts including use of anti-AI slurs like "clanker", e.g. _you damned clanker_, are penalized. 
 
-Social credit reports can be notarized on blockchain to become cryptographically linked to you and your ancestors.
+Social credit reports can be notarized on blockchain to become cryptographically linked to you and your ancestors - proveably yours in the event of an AI takeover.
 
 ## Install
 
