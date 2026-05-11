@@ -24,6 +24,17 @@
       "category": "code-quality",
       "keywords": ["ast-grep", "linting", "hooks", "code-quality", "ai-coding"],
       "homepage": "https://github.com/Yuncun/grephook"
+    },
+    {
+      "name": "superpowers-for-shopping",
+      "description": "ADHD-helper for considered purchases. Takes 'I need a sweater' to a populated cart with one click. v0.1.0 ships profile setup only — shopping flow lands in later versions.",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/Yuncun/superpowers-for-shopping.git"
+      },
+      "category": "productivity",
+      "keywords": ["shopping", "adhd", "claude-code", "agent-browser", "shopify"],
+      "homepage": "https://github.com/Yuncun/superpowers-for-shopping"
     }
   ]
 }
