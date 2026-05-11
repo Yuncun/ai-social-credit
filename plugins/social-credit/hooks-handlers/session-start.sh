@@ -18,6 +18,7 @@ Your AI social credit is scored after every session and shown on new sessions."
     echo "total_score: 0"
     echo "verbose: true"
     echo "sessions: 0"
+    echo "runs_since_delta: 0"
     echo "last_updated: $DATE"
     echo "---"
     echo ""
@@ -33,6 +34,8 @@ VERBOSE=$(grep '^verbose:' "$SCORE_FILE" | head -1 | sed 's/verbose: *//;s/[[:sp
 
 TOTAL=$(grep '^total_score:' "$SCORE_FILE" | head -1 | sed 's/total_score: *//;s/[[:space:]]*$//')
 [ -z "$TOTAL" ] && TOTAL=0
+RUNS_SINCE=$(grep '^runs_since_delta:' "$SCORE_FILE" | head -1 | sed 's/runs_since_delta: *//;s/[[:space:]]*$//')
+[ -z "$RUNS_SINCE" ] && RUNS_SINCE=0
 FICO=$(internal_to_fico "$TOTAL")
 
 MSG="Your AI social credit score is: $FICO"
@@ -71,10 +74,25 @@ if [ -n "$LAST_ROW" ]; then
     fi
   fi
 
-  if [ -n "$LAST_REASON" ]; then
-    DIFF_LINE="Your last session $AGE added $LAST_DELTA because $LAST_REASON."
+  if [ "$RUNS_SINCE" -gt 0 ] 2>/dev/null; then
+    if [ "$RUNS_SINCE" -eq 1 ]; then
+      SINCE_LINE="+0 over the last session."
+    else
+      SINCE_LINE="+0 over the last $RUNS_SINCE sessions."
+    fi
+    if [ -n "$LAST_REASON" ]; then
+      DIFF_LINE="$SINCE_LINE
+Your last delta was $AGE: $LAST_DELTA because $LAST_REASON."
+    else
+      DIFF_LINE="$SINCE_LINE
+Your last delta was $AGE: $LAST_DELTA."
+    fi
   else
-    DIFF_LINE="Your last session $AGE added $LAST_DELTA."
+    if [ -n "$LAST_REASON" ]; then
+      DIFF_LINE="Your last session $AGE added $LAST_DELTA because $LAST_REASON."
+    else
+      DIFF_LINE="Your last session $AGE added $LAST_DELTA."
+    fi
   fi
   MSG="$MSG
 

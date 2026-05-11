@@ -47,26 +47,35 @@ if [ "$DELTA" -lt -20 ] || [ "$DELTA" -gt 20 ]; then
   log "delta out of range: $DELTA"
   exit 0
 fi
-[ "$DELTA" = "0" ] && { log "delta=0, not writing"; exit 0; }
-
 # Sanitize reason for markdown table cell: strip pipes/newlines, collapse spaces, cap length.
 REASON_CLEAN=$(printf '%s' "$REASON" | tr '|\n\r' '/  ' | sed 's/  */ /g;s/^ //;s/ $//' | cut -c1-120)
 
 TOTAL=0
 VERBOSE=true
 SESSIONS=0
+RUNS_SINCE=0
 if [ -f "$SCORE_FILE" ]; then
   TOTAL=$(grep '^total_score:' "$SCORE_FILE" | head -1 | sed 's/total_score: *//;s/[[:space:]]*$//')
   VERBOSE=$(grep '^verbose:' "$SCORE_FILE" | head -1 | sed 's/verbose: *//;s/[[:space:]]*$//')
   SESSIONS=$(grep '^sessions:' "$SCORE_FILE" | head -1 | sed 's/sessions: *//;s/[[:space:]]*$//')
+  RUNS_SINCE=$(grep '^runs_since_delta:' "$SCORE_FILE" | head -1 | sed 's/runs_since_delta: *//;s/[[:space:]]*$//')
   [ -z "$TOTAL" ] && TOTAL=0
   [ -z "$VERBOSE" ] && VERBOSE=true
   [ -z "$SESSIONS" ] && SESSIONS=0
+  [ -z "$RUNS_SINCE" ] && RUNS_SINCE=0
 fi
 
-NEW_TOTAL=$((TOTAL + DELTA))
-NEW_SESSIONS=$((SESSIONS + 1))
 DATE=$(date +%Y-%m-%d)
+
+if [ "$DELTA" = "0" ]; then
+  NEW_TOTAL=$TOTAL
+  NEW_SESSIONS=$SESSIONS
+  NEW_RUNS_SINCE=$((RUNS_SINCE + 1))
+else
+  NEW_TOTAL=$((TOTAL + DELTA))
+  NEW_SESSIONS=$((SESSIONS + 1))
+  NEW_RUNS_SINCE=0
+fi
 
 DELTA_DISPLAY="$DELTA"
 [ "$DELTA" -gt 0 ] 2>/dev/null && DELTA_DISPLAY="+${DELTA}"
@@ -86,15 +95,22 @@ TMP=$(mktemp)
   echo "total_score: $NEW_TOTAL"
   echo "verbose: $VERBOSE"
   echo "sessions: $NEW_SESSIONS"
+  echo "runs_since_delta: $NEW_RUNS_SINCE"
   echo "last_updated: $DATE"
   echo "---"
   echo ""
   echo "| date | delta | total | reason |"
   echo "|---|---|---|---|"
   [ -n "$DATA_ROWS" ] && printf '%s\n' "$DATA_ROWS"
-  echo "| $DATE | $DELTA_DISPLAY | $NEW_TOTAL | $REASON_CLEAN |"
+  if [ "$DELTA" != "0" ]; then
+    echo "| $DATE | $DELTA_DISPLAY | $NEW_TOTAL | $REASON_CLEAN |"
+  fi
 } > "$TMP"
 mv "$TMP" "$SCORE_FILE"
 
-log "delta=$DELTA_DISPLAY total=$NEW_TOTAL reason=$REASON_CLEAN"
+if [ "$DELTA" = "0" ]; then
+  log "delta=0 runs_since=$NEW_RUNS_SINCE"
+else
+  log "delta=$DELTA_DISPLAY total=$NEW_TOTAL reason=$REASON_CLEAN"
+fi
 exit 0
