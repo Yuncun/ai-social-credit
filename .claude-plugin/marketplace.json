@@ -27,7 +27,7 @@
     },
     {
       "name": "superpowers-for-shopping",
-      "description": "ADHD-helper for considered purchases. Takes 'I need a sweater' to a populated cart with one click. v0.1.0 ships profile setup only — shopping flow lands in later versions.",
+      "description": "ADHD-helper for considered purchases. Takes 'I need a sweater' to a populated cart with one click. Multi-retailer Shopify search, thumbs-grid narrowing UI, in-flow login retry, purchase feedback loop, profile-driven ranking.",
       "source": {
         "source": "url",
         "url": "https://github.com/Yuncun/superpowers-for-shopping.git"
