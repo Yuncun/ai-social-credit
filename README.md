@@ -9,7 +9,7 @@ Social credit reports can be notarized on blockchain to become cryptographically
 ## Install
 
 ```bash
-/plugin marketplace add yuncun/ai-social-credit
+/plugin marketplace add Yuncun/yuncun-marketplace
 /plugin install social-credit@yuncun
 /reload-plugins
 ```
